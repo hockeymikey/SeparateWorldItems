@@ -3,9 +3,9 @@ SWI Is A multiworld inventory plugin that supports UUID and is a replacement for
 
 ## Installation and Usage
 
-Detailed documentation can be found in Spigotmc: http://www.spigotmc.org/resources/separate-world-items-a-mv-i-replacement-multiinv.2568/
+Detailed documentation can be found in Spigotmc: http://www.spigotmc.org/resources/separate-world-items-a-mv-i-replacement.2568/
 
-Releases can be found on Spigotmc: http://www.spigotmc.org/resources/separate-world-items-a-mv-i-replacement-multiinv.2568/
+Releases can be found on Spigotmc: http://www.spigotmc.org/resources/separate-world-items-a-mv-i-replacement.2568/
 
 ## Prerequisites
 * [Java] 7
