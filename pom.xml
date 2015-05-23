@@ -5,19 +5,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ExtendedAlpha.SWI</groupId>
-    <artifactId>SeparateWorldInventories</artifactId>
+    <artifactId>SeparateWorldItems</artifactId>
     <version>2.6.0</version>
 
-            <repositories>
-                <repository>
-                    <id>onarandombox</id>
-                    <url>http://repo.onarandombox.com/content/groups/public</url>
-                </repository>
-                <repository>
-                    <id>bukkit-repo</id>
-                    <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
-                </repository>
-            </repositories>
+    <repositories>
+        <repository>
+            <id>onarandombox</id>
+            <url>http://repo.onarandombox.com/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>bukkit-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
 
     <dependencies>
         <dependency>
@@ -34,6 +34,13 @@
             <groupId>com.onarandombox.multiverseinventories</groupId>
             <artifactId>Multiverse-Inventories</artifactId>
             <version>2.5</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>uk.co</groupId>
+            <artifactId>MultiInv</artifactId>
+            <version>3.3.5</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>

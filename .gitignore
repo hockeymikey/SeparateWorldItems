@@ -3,3 +3,6 @@
 *.xml
 SeparateWorldItems.iml
 *.MF
+*.class
+target/classes/plugin.yml
+target/classes/settings.json
