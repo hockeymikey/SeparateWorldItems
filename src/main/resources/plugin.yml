@@ -1,4 +1,5 @@
 main: com.ExtendedAlpha.SWI.SeparateWorldItems
+name: SeparateWorldItems
 version: ${project.version}
 authors: [TriptychPlaysMC, CaptainDenial ExtendedAlpha]
 spigot-dev-page: http://www.spigotmc.org/resources/authors/triptychplaysmc.21190/
