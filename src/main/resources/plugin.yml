@@ -1,0 +1,27 @@
+main: com.ExtendedAlpha.SWI.SeparateWorldItems
+version: ${project.version}
+authors: [TriptychPlaysMC, CaptainDenial ExtendedAlpha]
+spigot-dev-page: http://www.spigotmc.org/resources/authors/triptychplaysmc.21190/
+softdepend: [Multiverse-Core, Multiworld, Multiverse-Inventories]
+
+commands:
+  swi:
+    description: Commands for SeparateWorldItems
+    aliases: [separateworlditems]
+    
+permissions:
+  separateworlditems.bypass:
+    default: op
+    children:
+      separateworlditems.convert: true
+      separateworlditems.reload: true
+      separateworlditems.setdefault: true
+      separateworlditems.help: true
+  separateworlditems.convert:
+    default: false
+  separateworlditems.reload:
+    default: false
+  separateworlditems.setdefault:
+    default: false
+  separateworlditems.help:
+    default: false
