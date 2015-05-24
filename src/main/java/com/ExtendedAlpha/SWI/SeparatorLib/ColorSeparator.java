@@ -33,7 +33,7 @@ public class ColorSeparator {
 	protected ColorSeparator() {
 	}
 
-	public static JSONObject serializeColor(Color color) {
+	public static JSONObject separateColor(Color color) {
 		try {
 			
 			JSONObject root = new JSONObject();
@@ -72,20 +72,20 @@ public class ColorSeparator {
 		}
 	}
 
-	public static String serializeColorAsString(Color color) {
-		return serializeColorAsString(color, false);
+	public static String separateColorAsString(Color color) {
+		return separateColorAsString(color, false);
 	}
 
-	public static String serializeColorAsString(Color color, boolean pretty) {
-		return serializeColorAsString(color, pretty, 5);
+	public static String separateColorAsString(Color color, boolean pretty) {
+		return separateColorAsString(color, pretty, 5);
 	}
 
-	public static String serializeColorAsString(Color color, boolean pretty, int indentFactor) {
+	public static String separateColorAsString(Color color, boolean pretty, int indentFactor) {
 		try {
 			if(pretty) {
-				return serializeColor(color).toString(indentFactor);
+				return separateColor(color).toString(indentFactor);
 			} else {
-				return serializeColor(color).toString();
+				return separateColor(color).toString();
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();

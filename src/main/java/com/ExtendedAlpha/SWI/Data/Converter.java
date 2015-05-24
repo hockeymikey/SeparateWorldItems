@@ -82,7 +82,7 @@ public class Converter {
                 try {
                     PlayerProfile playerData = mvgroup.getPlayerData(ProfileTypes.SURVIVAL, player1);
                     if (playerData != null) {
-                        JSONObject writable = serializeMVIToNewFormat(playerData);
+                        JSONObject writable = separateMVIToNewFormat(playerData);
                         plugin.getSerializer().writePlayerDataToFile(player1, writable, mvgroup.getName(), GameMode.SURVIVAL.toString());
                     }
                 } catch (Exception ex) {
@@ -111,7 +111,7 @@ public class Converter {
                 if (player != null && player.getInventory() != null && player.getInventory().getInventoryContents() != null) {
                     System.out.println("MIAPIPlayer: " + player.getPlayername());
                     try {
-                        plugin.getSerializer().writePlayerDataToFile(offlinePlayer, serializeMIToNewFormat(player), mvAPI.getGroups().get(world), GameMode.SURVIVAL.toString());
+                        plugin.getSerializer().writePlayerDataToFile(offlinePlayer, separateMIToNewFormat(player), mvAPI.getGroups().get(world), GameMode.SURVIVAL.toString());
                     } catch (Exception ex) {
                         plugin.getPrinter().printToConsole("Error importing inventory for player '" + offlinePlayer.getName() + ": " + ex.getMessage(), true);
                         ex.printStackTrace();
@@ -125,16 +125,16 @@ public class Converter {
         plugin.getPrinter().printToConsole("MultiInv disabled! Don't forget to remove the .jar!", false);
     }
 
-    private JSONObject serializeMVIToNewFormat(PlayerProfile data) {
+    private JSONObject separateMVIToNewFormat(PlayerProfile data) {
         JSONObject root = new JSONObject();
 
         JSONObject inv = new JSONObject();
         if (data.get(Sharables.INVENTORY) != null) {
-            JSONArray inventory = InventorySeparator.serializeInventory(data.get(Sharables.INVENTORY));
+            JSONArray inventory = InventorySeparator.separateInventory(data.get(Sharables.INVENTORY));
             inv.put("inventory", inventory);
         }
         if (data.get(Sharables.ARMOR) != null) {
-            JSONArray armor = InventorySeparator.serializeInventory(data.get(Sharables.ARMOR));
+            JSONArray armor = InventorySeparator.separateInventory(data.get(Sharables.ARMOR));
             inv.put("armor", armor);
         }
 
@@ -155,7 +155,7 @@ public class Converter {
             for (PotionEffect effect : effects) {
                 potionEffects.add(effect);
             }
-            stats.put("potion-effects", PotionEffectSeparator.serializeEffects(potionEffects));
+            stats.put("potion-effects", PotionEffectSeparator.separateEffects(potionEffects));
         }
         if (data.get(Sharables.SATURATION) != null)
             stats.put("saturation", data.get(Sharables.SATURATION));
@@ -166,7 +166,7 @@ public class Converter {
         return root;
     }
 
-    private JSONObject serializeMIToNewFormat(MIAPIPlayer player) {
+    private JSONObject separateMIToNewFormat(MIAPIPlayer player) {
         JSONObject root = new JSONObject();
         JSONObject inventory = new JSONObject();
 
@@ -180,7 +180,7 @@ public class Converter {
         }
         ItemStack[] invArray = new ItemStack[items.size()];
         invArray = items.toArray(invArray);
-        JSONArray inv = InventorySeparator.serializeInventory(invArray);
+        JSONArray inv = InventorySeparator.separateInventory(invArray);
         inventory.put("inventory", inv);
 
         List<ItemStack> armorList = new ArrayList<>();
@@ -193,7 +193,7 @@ public class Converter {
         }
         ItemStack[] armorArray = new ItemStack[armorList.size()];
         armorArray = armorList.toArray(armorArray);
-        JSONArray armor = InventorySeparator.serializeInventory(armorArray);
+        JSONArray armor = InventorySeparator.separateInventory(armorArray);
         inventory.put("armor", armor);
 
         List<ItemStack> enderChestList = new ArrayList<>();
@@ -206,7 +206,7 @@ public class Converter {
         }
         ItemStack[] endArray = new ItemStack[enderChestList.size()];
         endArray = enderChestList.toArray(endArray);
-        JSONArray enderChest = InventorySeparator.serializeInventory(endArray);
+        JSONArray enderChest = InventorySeparator.separateInventory(endArray);
         root.put("ender-chest", enderChest);
 
         JSONObject stats = new JSONObject();

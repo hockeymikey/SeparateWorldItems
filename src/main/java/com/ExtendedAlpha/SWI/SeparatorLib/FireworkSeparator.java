@@ -59,13 +59,13 @@ public class FireworkSeparator {
 		}
 	}
 	
-	public static JSONObject serializeFireworkMeta(FireworkMeta meta) {
+	public static JSONObject separateFireworkMeta(FireworkMeta meta) {
 		try {
 			JSONObject root = new JSONObject();
 			root.put("power", meta.getPower());
 			JSONArray effects = new JSONArray();
 			for(FireworkEffect e : meta.getEffects()) {
-				effects.put(FireworkEffectSeparator.serializeFireworkEffect(e));
+				effects.put(FireworkEffectSeparator.separateFireworkEffect(e));
 			}
 			root.put("effects", effects);
 			return root;
@@ -75,16 +75,16 @@ public class FireworkSeparator {
 		return null;
 	}
 	
-	public static String serializeFireworkMetaAsString(FireworkMeta meta) {
-		return serializeFireworkMetaAsString(meta, false);
+	public static String separateFireworkMetaAsString(FireworkMeta meta) {
+		return separateFireworkMetaAsString(meta, false);
 	}
 	
-	public static String serializeFireworkMetaAsString(FireworkMeta meta, boolean pretty) {
-		return serializeFireworkMetaAsString(meta, false, 5);
+	public static String separateFireworkMetaAsString(FireworkMeta meta, boolean pretty) {
+		return separateFireworkMetaAsString(meta, false, 5);
 	}
 	
-	public static String serializeFireworkMetaAsString(FireworkMeta meta, boolean pretty, int indentFactor) {
-		return Separator.toString(serializeFireworkMeta(meta), pretty, indentFactor);
+	public static String separateFireworkMetaAsString(FireworkMeta meta, boolean pretty, int indentFactor) {
+		return Separator.toString(separateFireworkMeta(meta), pretty, indentFactor);
 	}
 	
 }

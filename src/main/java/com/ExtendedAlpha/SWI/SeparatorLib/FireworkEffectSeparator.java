@@ -75,21 +75,21 @@ public class FireworkEffectSeparator {
 		return null;
 	}
 	
-	public static JSONObject serializeFireworkEffect(FireworkEffect effect) {
+	public static JSONObject separateFireworkEffect(FireworkEffect effect) {
 		try {
 			JSONObject root = new JSONObject();
 			
 			//colors
 			JSONArray colors = new JSONArray();
 			for(Color c : effect.getColors()) {
-				colors.put(ColorSeparator.serializeColor(c));
+				colors.put(ColorSeparator.separateColor(c));
 			}
 			root.put("colors", colors);
 			
 			//fade colors
 			JSONArray fadeColors = new JSONArray();
 			for(Color c : effect.getFadeColors()) {
-				fadeColors.put(ColorSeparator.serializeColor(c));
+				fadeColors.put(ColorSeparator.separateColor(c));
 			}
 			root.put("fade-colors", fadeColors);
 			
@@ -109,16 +109,16 @@ public class FireworkEffectSeparator {
 		return null;
 	}
 	
-	public static String serializeFireworkEffectAsString(FireworkEffect effect) {
-		return serializeFireworkEffectAsString(effect, false);
+	public static String separateFireworkEffectAsString(FireworkEffect effect) {
+		return separateFireworkEffectAsString(effect, false);
 	}
 	
-	public static String serializeFireworkEffectAsString(FireworkEffect effect, boolean pretty) {
-		return serializeFireworkEffectAsString(effect, false, 5);
+	public static String separateFireworkEffectAsString(FireworkEffect effect, boolean pretty) {
+		return separateFireworkEffectAsString(effect, false, 5);
 	}
 	
-	public static String serializeFireworkEffectAsString(FireworkEffect effect, boolean pretty, int indentFactor) {
-		return Separator.toString(serializeFireworkEffect(effect), pretty, indentFactor);
+	public static String separateFireworkEffectAsString(FireworkEffect effect, boolean pretty, int indentFactor) {
+		return Separator.toString(separateFireworkEffect(effect), pretty, indentFactor);
 	}
 	
 }

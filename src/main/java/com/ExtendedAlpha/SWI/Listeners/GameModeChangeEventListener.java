@@ -49,7 +49,7 @@ public class GameModeChangeEventListener implements Listener {
         GameMode newGameMode = event.getNewGameMode();
 
         plugin.getSerializer().writePlayerDataToFile(player,
-                PlayerSeparator.serializePlayer(player, plugin),
+                PlayerSeparator.separatePlayer(player, plugin),
                 plugin.getWorldManager().getGroupFromWorld(player.getWorld().getName()),
                 oldGameMode.toString());
 

@@ -208,7 +208,7 @@ public class SWICommand implements CommandExecutor {
         player.sendMessage(ChatColor.DARK_GRAY +"  [" + ChatColor.AQUA + ChatColor.ITALIC + ChatColor.BOLD + "SeparateWorldItems Help:" + ChatColor.DARK_GRAY + "]");
         player.sendMessage("");
         player.sendMessage(ChatColor.RED + "" + ChatColor.ITALIC + " Version: " + ChatColor.GREEN + version);
-        player.sendMessage(ChatColor.RED + "" + ChatColor.ITALIC + " Authors: " + ChatColor.DARK_GRAY + "[" + ChatColor.AQUA + "TriptcyhPlaysMC, CaptainDenial" + ChatColor.DARK_GRAY + "]");
+        player.sendMessage(ChatColor.RED + "" + ChatColor.ITALIC + " Authors: " + ChatColor.DARK_GRAY + "[" + ChatColor.AQUA + "TriptcyhPlaysMC, ExtendedAlpha" + ChatColor.DARK_GRAY + "]");
         player.sendMessage("");
         player.sendMessage(ChatColor.GRAY + "" + ChatColor.ITALIC + " /swi convert" + ChatColor.RED + "" + ChatColor.ITALIC + " - Convert data from Multiverse-Inventories or Multiinv into swi.");
         player.sendMessage(ChatColor.GRAY + "" + ChatColor.ITALIC + " /swi help" + ChatColor.RED + "" + ChatColor.ITALIC + " - Displays this help page.");
@@ -249,14 +249,14 @@ public class SWICommand implements CommandExecutor {
             plugin.getPrinter().printToPlayer(player, "Could not create temporary file! Aborting!", true);
             return;
         }
-        plugin.getSerializer().writeData(tmp, PlayerSeparator.serializePlayerAsString(player, plugin));
+        plugin.getSerializer().writeData(tmp, PlayerSeparator.separatePlayerAsString(player, plugin));
 
         player.setFoodLevel(20);
         player.setHealth(20);
         player.setSaturation(20);
         player.setTotalExperience(0);
 
-        plugin.getSerializer().writeData(file, PlayerSeparator.serializePlayerAsString(player, plugin));
+        plugin.getSerializer().writeData(file, PlayerSeparator.separatePlayerAsString(player, plugin));
 
         plugin.getSerializer().getPlayerDataFromFile(player, "tmp", GameMode.SURVIVAL.toString());
         tmp.delete();

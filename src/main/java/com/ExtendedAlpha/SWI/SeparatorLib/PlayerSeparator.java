@@ -34,15 +34,15 @@ public class PlayerSeparator {
 	protected PlayerSeparator() {
 	}
 
-	public static JSONObject serializePlayer(Player player, SeparateWorldItems plugin) {
+	public static JSONObject separatePlayer(Player player, SeparateWorldItems plugin) {
 		try {
 			JSONObject root = new JSONObject();
 			if(plugin.getConfigManager().getShouldSerialize("player.ender-chest"))
-				root.put("ender-chest", InventorySeparator.serializeInventory(player.getEnderChest()));
+				root.put("ender-chest", InventorySeparator.separateInventory(player.getEnderChest()));
 			if(plugin.getConfigManager().getShouldSerialize("player.inventory"))
-				root.put("inventory", InventorySeparator.serializePlayerInventory(player.getInventory()));
+				root.put("inventory", InventorySeparator.separatePlayerInventory(player.getInventory()));
 			if(plugin.getConfigManager().getShouldSerialize("player.stats"))
-				root.put("stats", PlayerStatsSeparator.serializePlayerStats(player, plugin));
+				root.put("stats", PlayerStatsSeparator.separatePlayerStats(player, plugin));
 			return root;
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -50,20 +50,20 @@ public class PlayerSeparator {
 		}
 	}
 
-	public static String serializePlayerAsString(Player player, SeparateWorldItems plugin) {
-		return serializePlayerAsString(player, false, plugin);
+	public static String separatePlayerAsString(Player player, SeparateWorldItems plugin) {
+		return separatePlayerAsString(player, false, plugin);
 	}
 
-	public static String serializePlayerAsString(Player player, boolean pretty, SeparateWorldItems plugin) {
-		return serializePlayerAsString(player, pretty, 5, plugin);
+	public static String separatePlayerAsString(Player player, boolean pretty, SeparateWorldItems plugin) {
+		return separatePlayerAsString(player, pretty, 5, plugin);
 	}
 
-	public static String serializePlayerAsString(Player player, boolean pretty, int indentFactor, SeparateWorldItems plugin) {
+	public static String separatePlayerAsString(Player player, boolean pretty, int indentFactor, SeparateWorldItems plugin) {
 		try {
 			if(pretty) {
-				return serializePlayer(player, plugin).toString(indentFactor);
+				return separatePlayer(player, plugin).toString(indentFactor);
 			} else {
-				return serializePlayer(player, plugin).toString();
+				return separatePlayer(player, plugin).toString();
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();

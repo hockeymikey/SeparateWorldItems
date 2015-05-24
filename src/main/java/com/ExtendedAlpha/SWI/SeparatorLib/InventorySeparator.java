@@ -42,21 +42,21 @@ public class InventorySeparator {
 	protected InventorySeparator() {
 	}
 
-	public static JSONArray serializeInventory(Inventory inv) {
+	public static JSONArray separateInventory(Inventory inv) {
 		JSONArray inventory = new JSONArray();
 		for(int i = 0; i < inv.getSize(); i++) {
-			JSONObject values = SingleItemSeparator.serializeItemInInventory(inv.getItem(i), i);
+			JSONObject values = SingleItemSeparator.separateItemInInventory(inv.getItem(i), i);
 			if(values != null)
 				inventory.put(values);
 		}
 		return inventory;
 	}
 
-	public static JSONObject serializePlayerInventory(PlayerInventory inv) {
+	public static JSONObject separatePlayerInventory(PlayerInventory inv) {
 		try {
 			JSONObject root = new JSONObject();
-			JSONArray inventory = serializeInventory(inv);
-			JSONArray armor = serializeInventory(inv.getArmorContents());
+			JSONArray inventory = separateInventory(inv);
+			JSONArray armor = separateInventory(inv.getArmorContents());
 			root.put("inventory", inventory);
 			root.put("armor", armor);
 			return root;
@@ -66,20 +66,20 @@ public class InventorySeparator {
 		}
 	}
 
-	public static String serializePlayerInventoryAsString(PlayerInventory inv) {
-		return serializePlayerInventoryAsString(inv, false);
+	public static String separatePlayerInventoryAsString(PlayerInventory inv) {
+		return separatePlayerInventoryAsString(inv, false);
 	}
 
-	public static String serializePlayerInventoryAsString(PlayerInventory inv, boolean pretty) {
-		return serializePlayerInventoryAsString(inv, pretty, 5);
+	public static String separatePlayerInventoryAsString(PlayerInventory inv, boolean pretty) {
+		return separatePlayerInventoryAsString(inv, pretty, 5);
 	}
 
-	public static String serializePlayerInventoryAsString(PlayerInventory inv, boolean pretty, int indentFactor) {
+	public static String separatePlayerInventoryAsString(PlayerInventory inv, boolean pretty, int indentFactor) {
 		try {
 			if(pretty) {
-				return serializePlayerInventory(inv).toString(indentFactor);
+				return separatePlayerInventory(inv).toString(indentFactor);
 			} else {
-				return serializePlayerInventory(inv).toString();
+				return separatePlayerInventory(inv).toString();
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -87,20 +87,20 @@ public class InventorySeparator {
 		}
 	}
 
-	public static String serializeInventoryAsString(Inventory inventory) {
-		return serializeInventoryAsString(inventory, false);
+	public static String separateInventoryAsString(Inventory inventory) {
+		return separateInventoryAsString(inventory, false);
 	}
 
-	public static String serializeInventoryAsString(Inventory inventory, boolean pretty) {
-		return serializeInventoryAsString(inventory, pretty, 5);
+	public static String separateInventoryAsString(Inventory inventory, boolean pretty) {
+		return separateInventoryAsString(inventory, pretty, 5);
 	}
 
-	public static String serializeInventoryAsString(Inventory inventory, boolean pretty, int indentFactor) {
+	public static String separateInventoryAsString(Inventory inventory, boolean pretty, int indentFactor) {
 		try {
 			if(pretty) {
-				return serializeInventory(inventory).toString(indentFactor);
+				return separateInventory(inventory).toString(indentFactor);
 			} else {
-				return serializeInventory(inventory).toString();
+				return separateInventory(inventory).toString();
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -108,20 +108,20 @@ public class InventorySeparator {
 		}
 	}
 
-	public static String serializeInventoryAsString(ItemStack[] contents) {
-		return serializeInventoryAsString(contents, false);
+	public static String separateInventoryAsString(ItemStack[] contents) {
+		return separateInventoryAsString(contents, false);
 	}
 
-	public static String serializeInventoryAsString(ItemStack[] contents, boolean pretty) {
-		return serializeInventoryAsString(contents, pretty, 5);
+	public static String separateInventoryAsString(ItemStack[] contents, boolean pretty) {
+		return separateInventoryAsString(contents, pretty, 5);
 	}
 
-	public static String serializeInventoryAsString(ItemStack[] contents, boolean pretty, int indentFactor) {
+	public static String separateInventoryAsString(ItemStack[] contents, boolean pretty, int indentFactor) {
 		try {
 			if(pretty) {
-				return serializeInventory(contents).toString(indentFactor);
+				return separateInventory(contents).toString(indentFactor);
 			} else {
-				return serializeInventory(contents).toString();
+				return separateInventory(contents).toString();
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -129,10 +129,10 @@ public class InventorySeparator {
 		}
 	}
 
-	public static JSONArray serializeInventory(ItemStack[] contents) {
+	public static JSONArray separateInventory(ItemStack[] contents) {
 		JSONArray inventory = new JSONArray();
 		for(int i = 0; i < contents.length; i++) {
-			JSONObject values = SingleItemSeparator.serializeItemInInventory(contents[i], i);
+			JSONObject values = SingleItemSeparator.separateItemInInventory(contents[i], i);
 			if(values != null)
 				inventory.put(values);
 		}

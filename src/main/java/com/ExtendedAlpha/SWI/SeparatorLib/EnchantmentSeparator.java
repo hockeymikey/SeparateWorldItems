@@ -35,32 +35,32 @@ public class EnchantmentSeparator {
 	protected EnchantmentSeparator() {
 	}
 
-	public static String serializeEnchantments(Map<Enchantment, Integer> enchantments) {
-		String serialized = "";
+	public static String separateEnchantments(Map<Enchantment, Integer> enchantments) {
+		String separated = "";
 		for(Enchantment e : enchantments.keySet()) {
-			serialized += e.getId() + ":" + enchantments.get(e) + ";";
+			separated += e.getId() + ":" + enchantments.get(e) + ";";
 		}
-		return serialized;
+		return separated;
 	}
 
-	public static Map<Enchantment, Integer> getEnchantments(String serializedEnchants) {
+	public static Map<Enchantment, Integer> getEnchantments(String separatedEnchants) {
 		HashMap<Enchantment, Integer> enchantments = new HashMap<Enchantment, Integer>();
-		if(serializedEnchants.isEmpty())
+		if(separatedEnchants.isEmpty())
 			return enchantments;
-		String[] enchants = serializedEnchants.split(";");
+		String[] enchants = separatedEnchants.split(";");
 		for(int i = 0; i < enchants.length; i++) {
 			String[] ench = enchants[i].split(":");
 			if(ench.length < 2)
-				throw new IllegalArgumentException(serializedEnchants + " - Enchantment " + i + " (" + enchants[i] + "): split must at least have a length of 2");
+				throw new IllegalArgumentException(separatedEnchants + " - Enchantment " + i + " (" + enchants[i] + "): split must at least have a length of 2");
 			if(!Utils.isNum(ench[0]))
-				throw new IllegalArgumentException(serializedEnchants + " - Enchantment " + i + " (" + enchants[i] + "): id is not an integer");
+				throw new IllegalArgumentException(separatedEnchants + " - Enchantment " + i + " (" + enchants[i] + "): id is not an integer");
 			if(!Utils.isNum(ench[1]))
-				throw new IllegalArgumentException(serializedEnchants + " - Enchantment " + i + " (" + enchants[i] + "): level is not an integer");
+				throw new IllegalArgumentException(separatedEnchants + " - Enchantment " + i + " (" + enchants[i] + "): level is not an integer");
 			int id = Integer.parseInt(ench[0]);
 			int level = Integer.parseInt(ench[1]);
 			Enchantment e = Enchantment.getById(id);
 			if(e == null)
-				throw new IllegalArgumentException(serializedEnchants + " - Enchantment " + i + " (" + enchants[i] + "): no Enchantment with id of " + id);
+				throw new IllegalArgumentException(separatedEnchants + " - Enchantment " + i + " (" + enchants[i] + "): no Enchantment with id of " + id);
 			enchantments.put(e, level);
 		}
 		return enchantments;
@@ -84,7 +84,7 @@ public class EnchantmentSeparator {
 
 	public static String convert(String oldFormat) {
 		Map<Enchantment, Integer> enchants = getEnchantsFromOldFormat(oldFormat);
-		return serializeEnchantments(enchants);
+		return separateEnchantments(enchants);
 	}
 
 	public static Map<Enchantment, Integer> convertAndGetEnchantments(String oldFormat) {

@@ -39,7 +39,7 @@ public class BannerSeparator {
     protected BannerSeparator() {
     }
 
-    public static JSONObject serializeBanner(BannerMeta banner) {
+    public static JSONObject separateBanner(BannerMeta banner) {
         try {
             JSONObject root = new JSONObject();
             if (banner.getBaseColor() != null)

@@ -54,12 +54,12 @@ public class ChangedWorldEventListener implements Listener {
 
         if (plugin.getConfigManager().getConfig("config").getBoolean("separate-gamemode-inventories")) {
             plugin.getSerializer().writePlayerDataToFile(player,
-                    PlayerSeparator.serializePlayer(player, plugin),
+                    PlayerSeparator.separatePlayer(player, plugin),
                     groupFrom,
                     player.getGameMode().toString());
         } else {
             plugin.getSerializer().writePlayerDataToFile(player,
-                    PlayerSeparator.serializePlayer(player, plugin),
+                    PlayerSeparator.separatePlayer(player, plugin),
                     groupFrom,
                     GameMode.SURVIVAL.toString());
         }

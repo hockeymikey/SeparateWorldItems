@@ -35,7 +35,7 @@ public class SkullSeparator {
 	protected SkullSeparator() {
 	}
 
-	public static JSONObject serializeSkull(SkullMeta meta) {
+	public static JSONObject separateSkull(SkullMeta meta) {
 		try {
 			JSONObject root = new JSONObject();
 			if(meta.hasOwner())
@@ -47,20 +47,20 @@ public class SkullSeparator {
 		}
 	}
 
-	public static String serializeSkullAsString(SkullMeta meta) {
-		return serializeSkullAsString(meta, false);
+	public static String separateSkullAsString(SkullMeta meta) {
+		return separateSkullAsString(meta, false);
 	}
 
-	public static String serializeSkullAsString(SkullMeta meta, boolean pretty) {
-		return serializeSkullAsString(meta, pretty, 5);
+	public static String separateSkullAsString(SkullMeta meta, boolean pretty) {
+		return separateSkullAsString(meta, pretty, 5);
 	}
 
-	public static String serializeSkullAsString(SkullMeta meta, boolean pretty, int indentFactor) {
+	public static String separateSkullAsString(SkullMeta meta, boolean pretty, int indentFactor) {
 		try {
 			if(pretty) {
-				return serializeSkull(meta).toString(indentFactor);
+				return separateSkull(meta).toString(indentFactor);
 			} else {
-				return serializeSkull(meta).toString();
+				return separateSkull(meta).toString();
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();

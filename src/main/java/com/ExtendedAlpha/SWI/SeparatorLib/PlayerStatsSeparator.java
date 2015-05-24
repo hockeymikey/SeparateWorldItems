@@ -35,7 +35,7 @@ public class PlayerStatsSeparator {
 	protected PlayerStatsSeparator() {
 	}
 
-	public static JSONObject serializePlayerStats(Player player, SeparateWorldItems plugin) {
+	public static JSONObject separatePlayerStats(Player player, SeparateWorldItems plugin) {
 		try {
 			JSONObject root = new JSONObject();
 			if(shouldSerialize("can-fly", plugin))
@@ -57,7 +57,7 @@ public class PlayerStatsSeparator {
 			if(shouldSerialize("level", plugin))
 				root.put("level", player.getLevel());
 			if(shouldSerialize("potion-effects", plugin))
-				root.put("potion-effects", PotionEffectSeparator.serializeEffects(player.getActivePotionEffects()));
+				root.put("potion-effects", PotionEffectSeparator.separateEffects(player.getActivePotionEffects()));
 			if(shouldSerialize("saturation", plugin))
 				root.put("saturation", player.getSaturation());
 			return root;
@@ -67,20 +67,20 @@ public class PlayerStatsSeparator {
 		}
 	}
 
-	public static String serializePlayerStatsAsString(Player player, SeparateWorldItems plugin) {
-		return serializePlayerStatsAsString(player, false, plugin);
+	public static String separatePlayerStatsAsString(Player player, SeparateWorldItems plugin) {
+		return separatePlayerStatsAsString(player, false, plugin);
 	}
 
-	public static String serializePlayerStatsAsString(Player player, boolean pretty, SeparateWorldItems plugin) {
-		return serializePlayerStatsAsString(player, pretty, 5, plugin);
+	public static String separatePlayerStatsAsString(Player player, boolean pretty, SeparateWorldItems plugin) {
+		return separatePlayerStatsAsString(player, pretty, 5, plugin);
 	}
 
-	public static String serializePlayerStatsAsString(Player player, boolean pretty, int indentFactor, SeparateWorldItems plugin) {
+	public static String separatePlayerStatsAsString(Player player, boolean pretty, int indentFactor, SeparateWorldItems plugin) {
 		try {
 			if(pretty) {
-				return serializePlayerStats(player, plugin).toString(indentFactor);
+				return separatePlayerStats(player, plugin).toString(indentFactor);
 			} else {
-				return serializePlayerStats(player, plugin).toString();
+				return separatePlayerStats(player, plugin).toString();
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();

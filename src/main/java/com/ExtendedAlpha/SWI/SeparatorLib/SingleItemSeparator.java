@@ -42,15 +42,15 @@ public class SingleItemSeparator {
 	protected SingleItemSeparator() {
 	}
 
-	public static JSONObject serializeItemInInventory(ItemStack items, int index) {
-		return serializeItems(items, true, index);
+	public static JSONObject separateItemInInventory(ItemStack items, int index) {
+		return separateItems(items, true, index);
 	}
 
-	public static JSONObject serializeItem(ItemStack items) {
-		return serializeItems(items, false, 0);
+	public static JSONObject separateItem(ItemStack items) {
+		return separateItems(items, false, 0);
 	}
 	
-	private static JSONObject serializeItems(ItemStack items, boolean useIndex, int index) {
+	private static JSONObject separateItems(ItemStack items, boolean useIndex, int index) {
 		try {
 			JSONObject values = new JSONObject();
 			if(items == null)
@@ -66,17 +66,17 @@ public class SingleItemSeparator {
 			Material mat = items.getType();
 			JSONObject bannerMeta = null, bookMeta = null, armorMeta = null, skullMeta = null, fwMeta = null;
 			if (mat == Material.BANNER) {
-				bannerMeta = BannerSeparator.serializeBanner((BannerMeta) items.getItemMeta());
+				bannerMeta = BannerSeparator.separateBanner((BannerMeta) items.getItemMeta());
 			} else if(mat == Material.BOOK_AND_QUILL || mat == Material.WRITTEN_BOOK) {
-				bookMeta = BookSeparator.serializeBookMeta((BookMeta) items.getItemMeta());
+				bookMeta = BookSeparator.separateBookMeta((BookMeta) items.getItemMeta());
 			} else if(mat == Material.ENCHANTED_BOOK) {
-				bookMeta = BookSeparator.serializeEnchantedBookMeta((EnchantmentStorageMeta) items.getItemMeta());
+				bookMeta = BookSeparator.separateEnchantedBookMeta((EnchantmentStorageMeta) items.getItemMeta());
 			} else if(Utils.isLeatherArmor(mat)) {
-				armorMeta = LeatherArmorSeparator.serializeArmor((LeatherArmorMeta) items.getItemMeta());
+				armorMeta = LeatherArmorSeparator.separateArmor((LeatherArmorMeta) items.getItemMeta());
 			} else if(mat == Material.SKULL_ITEM) {
-				skullMeta = SkullSeparator.serializeSkull((SkullMeta) items.getItemMeta());
+				skullMeta = SkullSeparator.separateSkull((SkullMeta) items.getItemMeta());
 			} else if(mat == Material.FIREWORK) {
-				fwMeta = FireworkSeparator.serializeFireworkMeta((FireworkMeta) items.getItemMeta());
+				fwMeta = FireworkSeparator.separateFireworkMeta((FireworkMeta) items.getItemMeta());
 			}
 			if(hasMeta) {
 				ItemMeta meta = items.getItemMeta();
@@ -86,7 +86,7 @@ public class SingleItemSeparator {
 					lore = meta.getLore().toArray(new String[]{});
 				}
 				if(meta.hasEnchants())
-					enchants = EnchantmentSeparator.serializeEnchantments(meta.getEnchants());
+					enchants = EnchantmentSeparator.separateEnchantments(meta.getEnchants());
 				if(meta instanceof Repairable){
 					Repairable rep = (Repairable) meta;
 					if(rep.hasRepairCost()){
@@ -234,20 +234,20 @@ public static ItemStack getItem(JSONObject item, int index) {
 		}
 	}
 
-	public static String serializeItemInInventoryAsString(ItemStack items, int index) {
-		return serializeItemInInventoryAsString(items, index, false);
+	public static String separateItemInInventoryAsString(ItemStack items, int index) {
+		return separateItemInInventoryAsString(items, index, false);
 	}
 
-	public static String serializeItemInInventoryAsString(ItemStack items, int index, boolean pretty) {
-		return serializeItemInInventoryAsString(items, index, pretty, 5);
+	public static String separateItemInInventoryAsString(ItemStack items, int index, boolean pretty) {
+		return separateItemInInventoryAsString(items, index, pretty, 5);
 	}
 
-	public static String serializeItemInInventoryAsString(ItemStack items, int index, boolean pretty, int indentFactor) {
+	public static String separateItemInInventoryAsString(ItemStack items, int index, boolean pretty, int indentFactor) {
 		try {
 			if(pretty) {
-				return serializeItemInInventory(items, index).toString(indentFactor);
+				return separateItemInInventory(items, index).toString(indentFactor);
 			} else {
-				return serializeItemInInventory(items, index).toString();
+				return separateItemInInventory(items, index).toString();
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -255,20 +255,20 @@ public static ItemStack getItem(JSONObject item, int index) {
 		}
 	}
 
-	public static String serializeItemAsString(ItemStack items) {
-		return serializeItemAsString(items, false);
+	public static String separateItemAsString(ItemStack items) {
+		return separateItemAsString(items, false);
 	}
 
-	public static String serializeItemAsString(ItemStack items, boolean pretty) {
-		return serializeItemAsString(items, pretty, 5);
+	public static String separateItemAsString(ItemStack items, boolean pretty) {
+		return separateItemAsString(items, pretty, 5);
 	}
 
-	public static String serializeItemAsString(ItemStack items, boolean pretty, int indentFactor) {
+	public static String separateItemAsString(ItemStack items, boolean pretty, int indentFactor) {
 		try {
 			if(pretty) {
-				return serializeItem(items).toString(indentFactor);
+				return separateItem(items).toString(indentFactor);
 			} else {
-				return serializeItem(items).toString();
+				return separateItem(items).toString();
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();

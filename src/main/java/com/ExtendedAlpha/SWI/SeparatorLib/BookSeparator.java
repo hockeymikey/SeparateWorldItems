@@ -82,7 +82,7 @@ public class BookSeparator {
 		}
 	}
 
-	public static JSONObject serializeBookMeta(BookMeta meta) {
+	public static JSONObject separateBookMeta(BookMeta meta) {
 		try {
 			JSONObject root = new JSONObject();
 			if(meta.hasTitle())
@@ -100,20 +100,20 @@ public class BookSeparator {
 		}
 	}
 
-	public static String serializeBookMetaAsString(BookMeta meta) {
-		return serializeBookMetaAsString(meta, false);
+	public static String separateBookMetaAsString(BookMeta meta) {
+		return separateBookMetaAsString(meta, false);
 	}
 
-	public static String serializeBookMetaAsString(BookMeta meta, boolean pretty) {
-		return serializeBookMetaAsString(meta, pretty, 5);
+	public static String separateBookMetaAsString(BookMeta meta, boolean pretty) {
+		return separateBookMetaAsString(meta, pretty, 5);
 	}
 
-	public static String serializeBookMetaAsString(BookMeta meta, boolean pretty, int indentFactor) {
+	public static String separateBookMetaAsString(BookMeta meta, boolean pretty, int indentFactor) {
 		try {
 			if(pretty) {
-				return serializeBookMeta(meta).toString(indentFactor);
+				return separateBookMeta(meta).toString(indentFactor);
 			} else {
-				return serializeBookMeta(meta).toString();
+				return separateBookMeta(meta).toString();
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -147,10 +147,10 @@ public class BookSeparator {
 		}
 	}
 
-	public static JSONObject serializeEnchantedBookMeta(EnchantmentStorageMeta meta) {
+	public static JSONObject separateEnchantedBookMeta(EnchantmentStorageMeta meta) {
 		try {
 			JSONObject root = new JSONObject();
-			String enchants = EnchantmentSeparator.serializeEnchantments(meta.getStoredEnchants());
+			String enchants = EnchantmentSeparator.separateEnchantments(meta.getStoredEnchants());
 			root.put("enchantments", enchants);
 			return root;
 		} catch (JSONException e) {
@@ -159,20 +159,20 @@ public class BookSeparator {
 		}
 	}
 
-	public static String serializeEnchantedBookMetaAsString(EnchantmentStorageMeta meta) {
-		return serializeEnchantedBookMetaAsString(meta, false);
+	public static String separateEnchantedBookMetaAsString(EnchantmentStorageMeta meta) {
+		return separateEnchantedBookMetaAsString(meta, false);
 	}
 
-	public static String serializeEnchantedBookMetaAsString(EnchantmentStorageMeta meta, boolean pretty) {
-		return serializeEnchantedBookMetaAsString(meta, pretty, 5);
+	public static String separateEnchantedBookMetaAsString(EnchantmentStorageMeta meta, boolean pretty) {
+		return separateEnchantedBookMetaAsString(meta, pretty, 5);
 	}
 
-	public static String serializeEnchantedBookMetaAsString(EnchantmentStorageMeta meta, boolean pretty, int indentFactor) {
+	public static String separateEnchantedBookMetaAsString(EnchantmentStorageMeta meta, boolean pretty, int indentFactor) {
 		try {
 			if(pretty) {
-				return serializeEnchantedBookMeta(meta).toString(indentFactor);
+				return separateEnchantedBookMeta(meta).toString(indentFactor);
 			} else {
-				return serializeEnchantedBookMeta(meta).toString();
+				return separateEnchantedBookMeta(meta).toString();
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();

@@ -35,10 +35,10 @@ public class LeatherArmorSeparator {
 	protected LeatherArmorSeparator() {
 	}
 
-	public static JSONObject serializeArmor(LeatherArmorMeta meta) {
+	public static JSONObject separateArmor(LeatherArmorMeta meta) {
 		try {
 			JSONObject root = new JSONObject();
-			root.put("color", ColorSeparator.serializeColor(meta.getColor()));
+			root.put("color", ColorSeparator.separateColor(meta.getColor()));
 			return root;
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -46,20 +46,20 @@ public class LeatherArmorSeparator {
 		}
 	}
 
-	public static String serializeArmorAsString(LeatherArmorMeta meta) {
-		return serializeArmorAsString(meta, false);
+	public static String separateArmorAsString(LeatherArmorMeta meta) {
+		return separateArmorAsString(meta, false);
 	}
 
-	public static String serializeArmorAsString(LeatherArmorMeta meta, boolean pretty) {
-		return serializeArmorAsString(meta, pretty, 5);
+	public static String separateArmorAsString(LeatherArmorMeta meta, boolean pretty) {
+		return separateArmorAsString(meta, pretty, 5);
 	}
 
-	public static String serializeArmorAsString(LeatherArmorMeta meta, boolean pretty, int indentFactor) {
+	public static String separateArmorAsString(LeatherArmorMeta meta, boolean pretty, int indentFactor) {
 		try {
 			if(pretty) {
-				return serializeArmor(meta).toString(indentFactor);
+				return separateArmor(meta).toString(indentFactor);
 			} else {
-				return serializeArmor(meta).toString();
+				return separateArmor(meta).toString();
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
