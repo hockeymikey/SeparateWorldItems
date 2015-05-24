@@ -6,7 +6,7 @@
 
     <groupId>com.ExtendedAlpha.SWI</groupId>
     <artifactId>SeparateWorldItems</artifactId>
-    <version>2.6.1-SNAPSHOT</version>
+    <version>2.7.0</version>
 
     <ciManagement>
         <system>jenkins</system>
