@@ -32,10 +32,9 @@ import com.ExtendedAlpha.SWI.Data.WorldManager;
 import com.ExtendedAlpha.SWI.Listeners.ChangedWorldEventListener;
 import com.ExtendedAlpha.SWI.Listeners.GameModeChangeEventListener;
 import com.ExtendedAlpha.SWI.Listeners.QuitEventListener;
-import com.ExtendedAlpha.SWI.Metrics.MetricsLite;
+import com.ExtendedAlpha.SWI.Metrics.Metrics;
 import com.ExtendedAlpha.SWI.Updater.SpigotUpdater;
 import com.ExtendedAlpha.SWI.Utils.Messages;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -74,11 +73,11 @@ public class SeparateWorldItems extends JavaPlugin {
 
         if (getConfigManager().getConfig("config").getBoolean("separate-gamemode-inventories"))
             log(ChatColor.WHITE + "Initializing GameModeChangeEventListener...");
-            getServer().getPluginManager().registerEvents(new GameModeChangeEventListener(this), this); {
+        getServer().getPluginManager().registerEvents(new GameModeChangeEventListener(this), this);
+        {
 
         }
-        if (getConfig().getBoolean("check-updates"))
-        {
+        if (getConfig().getBoolean("check-updates")) {
 
             log(ChatColor.WHITE + "Initializing updater...");
             this.updater = new SpigotUpdater(this);
@@ -99,12 +98,7 @@ public class SeparateWorldItems extends JavaPlugin {
 
         log(ChatColor.WHITE + "Initializing Metrics..");
         log(ChatColor.GREEN + "Enabled!");
-        try {
-            MetricsLite metrics = new MetricsLite(this);
-            metrics.start();
-        } catch(IOException e) {
-
-        }
+        setupMetrics();
     }
 
     @Override
@@ -116,6 +110,15 @@ public class SeparateWorldItems extends JavaPlugin {
         getConfigManager().disable();
         WorldManager.disable();
         getServer().getScheduler().cancelTasks(this);
+    }
+
+    private void setupMetrics() {
+        try {
+            Metrics metrics = new Metrics(this);
+            metrics.start();
+        } catch (IOException e) {
+            log("Couldn't submit metrics stats: " + e.getMessage());
+        }
     }
 
     public ConfigFiles getConfigManager() {
