@@ -7,6 +7,8 @@ Detailed documentation can be found in Spigotmc: http://www.spigotmc.org/resourc
 
 Releases can be found on Spigotmc: http://www.spigotmc.org/resources/separate-world-items-a-mv-i-replacement.2568/
 
+Dev-Builds can be found here: http://ci.md-5.net/job/SeparateWorldItems/
+
 ## Prerequisites
 * [Java] 7
 
