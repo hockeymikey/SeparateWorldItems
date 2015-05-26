@@ -67,19 +67,46 @@ public class SingleItemSeparator {
 			int repairPenalty = 0;
 			Material mat = items.getType();
 			JSONObject bannerMeta = null, bookMeta = null, armorMeta = null, skullMeta = null, fwMeta = null;
-			if (mat == Material.BANNER) {
-				bannerMeta = BannerSeparator.separateBanner((BannerMeta) items.getItemMeta());
-			} else if(mat == Material.BOOK_AND_QUILL || mat == Material.WRITTEN_BOOK) {
-				bookMeta = BookSeparator.separateBookMeta((BookMeta) items.getItemMeta());
-			} else if(mat == Material.ENCHANTED_BOOK) {
-				bookMeta = BookSeparator.separateEnchantedBookMeta((EnchantmentStorageMeta) items.getItemMeta());
-			} else if(Utils.isLeatherArmor(mat)) {
-				armorMeta = LeatherArmorSeparator.separateArmor((LeatherArmorMeta) items.getItemMeta());
-			} else if(mat == Material.SKULL_ITEM) {
-				skullMeta = SkullSeparator.separateSkull((SkullMeta) items.getItemMeta());
-			} else if(mat == Material.FIREWORK) {
-				fwMeta = FireworkSeparator.separateFireworkMeta((FireworkMeta) items.getItemMeta());
+			
+			if(MinecraftUtils.getMinecraftVersion().startsWith("1.8")){
+				if (mat == Material.BANNER) {
+					BannerMeta meta = BannerSeparator.getBannerMeta(item.getJSONObject("banner-meta"));
+					stuff.setItemMeta(meta);
+				} else if((mat == Material.BOOK_AND_QUILL || mat == Material.WRITTEN_BOOK) && item.has("book-meta")) {
+					BookMeta meta = BookSeparator.getBookMeta(item.getJSONObject("book-meta"));
+					stuff.setItemMeta(meta);
+				} else if(mat == Material.ENCHANTED_BOOK && item.has("book-meta")) {
+					EnchantmentStorageMeta meta = BookSeparator.getEnchantedBookMeta(item.getJSONObject("book-meta"));
+					stuff.setItemMeta(meta);
+				} else if(Utils.isLeatherArmor(mat) && item.has("armor-meta")) {
+					LeatherArmorMeta meta = LeatherArmorSeparator.getLeatherArmorMeta(item.getJSONObject("armor-meta"));
+					stuff.setItemMeta(meta);
+				} else if(mat == Material.SKULL_ITEM && item.has("skull-meta")) {
+					SkullMeta meta = SkullSeparator.getSkullMeta(item.getJSONObject("skull-meta"));
+					stuff.setItemMeta(meta);
+				} else if(mat == Material.FIREWORK && item.has("firework-meta")) {
+					FireworkMeta meta = FireworkSeparator.getFireworkMeta(item.getJSONObject("firework-meta"));
+					stuff.setItemMeta(meta);
+				}
+			} else {
+				if((mat == Material.BOOK_AND_QUILL || mat == Material.WRITTEN_BOOK) && item.has("book-meta")) {
+					BookMeta meta = BookSeparator.getBookMeta(item.getJSONObject("book-meta"));
+					stuff.setItemMeta(meta);
+				} else if(mat == Material.ENCHANTED_BOOK && item.has("book-meta")) {
+					EnchantmentStorageMeta meta = BookSeparator.getEnchantedBookMeta(item.getJSONObject("book-meta"));
+					stuff.setItemMeta(meta);
+				} else if(Utils.isLeatherArmor(mat) && item.has("armor-meta")) {
+					LeatherArmorMeta meta = LeatherArmorSeparator.getLeatherArmorMeta(item.getJSONObject("armor-meta"));
+					stuff.setItemMeta(meta);
+				} else if(mat == Material.SKULL_ITEM && item.has("skull-meta")) {
+					SkullMeta meta = SkullSeparator.getSkullMeta(item.getJSONObject("skull-meta"));
+					stuff.setItemMeta(meta);
+				} else if(mat == Material.FIREWORK && item.has("firework-meta")) {
+					FireworkMeta meta = FireworkSeparator.getFireworkMeta(item.getJSONObject("firework-meta"));
+					stuff.setItemMeta(meta);
+				}
 			}
+			
 			if(hasMeta) {
 				ItemMeta meta = items.getItemMeta();
 				if(meta.hasDisplayName())
