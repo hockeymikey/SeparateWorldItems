@@ -9,7 +9,11 @@ Releases can be found on Spigotmc: http://www.spigotmc.org/resources/separate-wo
 
 Dev-Builds can be found here: http://ci.md-5.net/job/SeparateWorldItems/
 
-## Prerequisites
+## Running Prerequisites
+* Java 7
+* Spigot/Bukkit 1.8.x or 1.7.10
+
+## Building Prerequisites
 * JDK 7
 
 ## Building
