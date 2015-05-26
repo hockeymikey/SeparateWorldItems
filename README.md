@@ -2,7 +2,7 @@
 <img alt="" src="http://i.imgur.com/O127GFd.png" style="width: 982px; height: 255px;" />
 
 SWI Is a multiworld inventory plugin for CraftBukkit and Spigot that supports UUID.<br />
-It's a good replacement for the outdated <a href="http://dev.bukkit.org/bukkit-plugins/multiverse-inventories/" target="_blank">MultiVerse-Inventories</a> plugin.
+It's a good replacement for the outdated <a href="http://dev.bukkit.org/bukkit-plugins/multiverse-inventories/" target="_blank">Multiverse-Inventories</a> plugin.
 <hr>
 
 ## Installation and Usage
