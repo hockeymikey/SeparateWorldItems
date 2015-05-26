@@ -13,10 +13,11 @@ Dev-Builds (Jenkins) can be found here: http://ci.md-5.net/job/SeparateWorldItem
 
 ## Running Prerequisites
 * Java 7
-* Spigot/Bukkit 1.8.x or 1.7.10
+* Spigot/CraftBukkit 1.8.x or 1.7.10
 
 ## Building Prerequisites
 * JDK 7
+* Maven
 
 ## Building
 
