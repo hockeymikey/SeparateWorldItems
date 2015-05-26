@@ -7,12 +7,31 @@
     <groupId>com.ExtendedAlpha.SWI</groupId>
     <artifactId>SeparateWorldItems</artifactId>
     <version>2.7.0-dev</version>
-
+    
+    <name>SeparateWorldItems</name>
+	<url>http://www.spigotmc.org/resources/%E3%80%8Aseparate-world-items%E3%80%8Ba-mv-i-replacement.2568/</url>
+    <description>The multiverse inventories replacement</description>
+    
+	<packaging>jar</packaging>
+    
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<bukkitVersion>1.8.6-R0.1-SNAPSHOT</bukkitVersion>
+		<mainClass>${project.groupId}.${project.artifactId}</mainClass>
+	</properties>
+    
     <ciManagement>
         <system>jenkins</system>
         <url>http://ci.md-5.net/job/SeparateWorldItems/</url>
     </ciManagement>
-
+    
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/ExtendedAlpha/SeparateWorldItems/issues</url>
+	</issueManagement>
+    
     <distributionManagement>
         <repository>
             <id>md_5-releases</id>
@@ -26,30 +45,34 @@
 
     <repositories>
         <repository>
-            <id>onarandombox</id>
-            <url>http://repo.onarandombox.com/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>bukkit-repo</id>
+            <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
+		<repository>
+			<id>bukkit-repo</id>
+			<url>http://repo.bukkit.org/content/groups/public/</url>
+		</repository>
         <repository>
             <id>multiinv</id>
             <url>https://github.com/TriptychPlaysMC/mvn-repo/blob/master/uk/co/tggl/pluckerpluck/multiinv/3.3.5-SNAPSHOT/MultiInv-3.3.5.jar?raw=true</url>
         </repository>
+        <repository>
+            <id>onarandombox</id>
+            <url>http://repo.onarandombox.com/content/groups/public</url>
+        </repository>
     </repositories>
 
     <dependencies>
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.8.6-R0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>craftbukkit</artifactId>
-            <version>1.8.6-R0.1-SNAPSHOT</version>
-        </dependency>
+		<dependency>
+			<groupId>org.spigotmc</groupId>
+			<artifactId>spigot-api</artifactId>
+			<version>${bukkitVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bukkit</groupId>
+			<artifactId>bukkit</artifactId>
+			<version>${bukkitVersion}</version>
+		</dependency>
         <dependency>
             <groupId>com.onarandombox.multiverseinventories</groupId>
             <artifactId>Multiverse-Inventories</artifactId>
@@ -62,11 +85,6 @@
             <artifactId>MultiInv</artifactId>
             <version>3.3.5</version>
             <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.8.6-R0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -95,5 +113,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
