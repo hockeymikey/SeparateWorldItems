@@ -53,12 +53,12 @@
             <url>http://repo.bukkit.org/content/groups/public/</url>
         </repository>
         <repository>
-            <id>multiinv</id>
-            <url>https://github.com/TriptychPlaysMC/mvn-repo/blob/master/uk/co/tggl/pluckerpluck/multiinv/3.3.5-SNAPSHOT/MultiInv-3.3.5.jar?raw=true</url>
+            <id>onarandombox</id>
+            <url>http://repo.onarandombox.com/content/groups/public/</url>
         </repository>
         <repository>
-            <id>onarandombox</id>
-            <url>http://repo.onarandombox.com/content/groups/public</url>
+            <id>multiinv</id>
+            <url>https://github.com/TriptychPlaysMC/mvn-repo/blob/master/uk/co/tggl/pluckerpluck/multiinv/3.3.5-SNAPSHOT/MultiInv-3.3.5.jar?raw=true</url>
         </repository>
     </repositories>
 
