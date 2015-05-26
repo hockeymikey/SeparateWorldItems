@@ -25,11 +25,17 @@
 package com.ExtendedAlpha.SWI.Data;
 
 import com.ExtendedAlpha.SWI.SeparateWorldItems;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import static com.ExtendedAlpha.SWI.SeparateWorldItems.errorlog;
 
 public class WorldManager {
 
@@ -74,7 +80,8 @@ public class WorldManager {
             }
         }
 
-        throw new IllegalArgumentException("World '" + world + "' not found! Could not get group!");
+        errorlog(ChatColor.WHITE + "The world '" + world + "' needs to be added to the groups!");
+        return world;
     }
 
     public void addGroup(String group, List<String> worlds, GameMode defGameMode) {
@@ -92,8 +99,9 @@ public class WorldManager {
         if (groups.containsKey(group)) {
             return groups.get(group).contains(world);
         } else {
-            throw new IllegalArgumentException("Group '" + group + "' does not exist!");
+            errorlog(ChatColor.WHITE + "The group '" + group + "' does not yet exist!");
         }
+        return false;
     }
 
     public void loadGroups() {

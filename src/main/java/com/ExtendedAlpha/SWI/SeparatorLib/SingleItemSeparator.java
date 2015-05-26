@@ -25,6 +25,7 @@
 package com.ExtendedAlpha.SWI.SeparatorLib;
 
 import com.ExtendedAlpha.SWI.Utils.MinecraftUtils;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -37,6 +38,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static com.ExtendedAlpha.SWI.SeparateWorldItems.errorlog;
 
 public class SingleItemSeparator {
 
@@ -231,8 +234,8 @@ public static ItemStack getItem(JSONObject item, int index) {
                 repairPenalty = item.getInt("repairPenalty");
 
 
-            if (Material.getMaterial(id) == null)
-                throw new IllegalArgumentException("Item " + index + " - No Material found with id of " + id);
+			if (Material.getMaterial(id) == null)
+				errorlog(ChatColor.WHITE + "Item " + index + " - No Material found with id of " + id);
             Material mat = Material.getMaterial(id);
             ItemStack stuff = new ItemStack(mat, amount, (short) data);
             if (MinecraftUtils.getMinecraftVersion().startsWith("1.8"))
@@ -255,7 +258,6 @@ public static ItemStack getItem(JSONObject item, int index) {
                     FireworkMeta meta = FireworkSeparator.getFireworkMeta(item.getJSONObject("firework-meta"));
                     stuff.setItemMeta(meta);
                 }
-            //} else {
             if(MinecraftUtils.getMinecraftVersion().startsWith("1.7"))
                 if((mat == Material.BOOK_AND_QUILL || mat == Material.WRITTEN_BOOK) && item.has("book-meta")) {
                     BookMeta meta = BookSeparator.getBookMeta(item.getJSONObject("book-meta"));

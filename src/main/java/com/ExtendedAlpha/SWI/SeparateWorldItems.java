@@ -154,4 +154,8 @@ public class SeparateWorldItems extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.AQUA + "SWI" + ChatColor.DARK_GRAY + "] " + ChatColor.YELLOW + message.toString());
     }
 
+    public static void errorlog(final Object message) {
+        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.AQUA + "SWI" + ChatColor.DARK_GRAY + "] " + message.toString());
+    }
+
 }

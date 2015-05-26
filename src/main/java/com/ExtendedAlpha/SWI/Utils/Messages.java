@@ -29,6 +29,7 @@ import com.ExtendedAlpha.SWI.SeparateWorldItems;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import static com.ExtendedAlpha.SWI.SeparateWorldItems.errorlog;
 import static com.ExtendedAlpha.SWI.SeparateWorldItems.log;
 
 public class Messages {
@@ -50,6 +51,18 @@ public class Messages {
 
     public static void disable() {
         instance = null;
+    }
+
+    /**
+     * Method to print error messages to the server console.
+     *
+     * @param msg  The message to send to console.
+     * @param warn The level of the message.
+     */
+    public void printErrorToConsole(String msg, boolean warn) {
+        errorlog("" + msg);
+        // TODO make use of this.
+
     }
 
     /**
