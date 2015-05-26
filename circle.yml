@@ -1,9 +1,0 @@
-machine:
-  java:
-    version: oraclejdk7
-general:
-  artifacts:
-    - "target/SeparateWorldItems.jar"
-test:
-  override:
-    - mvn install
