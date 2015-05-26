@@ -1,4 +1,5 @@
-# SeparateWorldItems
+<img alt="" src="http://i.imgur.com/O127GFd.png" style="width: 982px; height: 255px;" />
+
 SWI Is A multiworld inventory plugin that supports UUID and is a replacement for MV-I
 
 ## Installation and Usage
