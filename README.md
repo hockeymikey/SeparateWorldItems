@@ -12,7 +12,7 @@ Detailed documentation and Releases can be found at our SpigotMc page: <a href="
 Dev-Builds (Jenkins) can be found here: http://ci.md-5.net/job/SeparateWorldItems/
 
 ## Running Prerequisites
-* Java 7
+* Java 7 (It should also work with Java 8)
 * Spigot/CraftBukkit 1.8.x or 1.7.10
 
 ## Building Prerequisites
