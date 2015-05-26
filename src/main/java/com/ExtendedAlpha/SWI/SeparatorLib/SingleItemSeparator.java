@@ -24,6 +24,7 @@
 
 package com.ExtendedAlpha.SWI.SeparatorLib;
 
+import com.ExtendedAlpha.SWI.Utils.MinecraftUtils;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -38,7 +39,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SingleItemSeparator {
-	
+
 	protected SingleItemSeparator() {
 	}
 
@@ -49,7 +50,7 @@ public class SingleItemSeparator {
 	public static JSONObject separateItem(ItemStack items) {
 		return separateItems(items, false, 0);
 	}
-	
+
 	private static JSONObject separateItems(ItemStack items, boolean useIndex, int index) {
 		try {
 			JSONObject values = new JSONObject();
@@ -65,19 +66,23 @@ public class SingleItemSeparator {
 			int repairPenalty = 0;
 			Material mat = items.getType();
 			JSONObject bannerMeta = null, bookMeta = null, armorMeta = null, skullMeta = null, fwMeta = null;
-			if (mat == Material.BANNER) {
-				bannerMeta = BannerSeparator.separateBanner((BannerMeta) items.getItemMeta());
-			} else if(mat == Material.BOOK_AND_QUILL || mat == Material.WRITTEN_BOOK) {
-				bookMeta = BookSeparator.separateBookMeta((BookMeta) items.getItemMeta());
-			} else if(mat == Material.ENCHANTED_BOOK) {
-				bookMeta = BookSeparator.separateEnchantedBookMeta((EnchantmentStorageMeta) items.getItemMeta());
-			} else if(Utils.isLeatherArmor(mat)) {
-				armorMeta = LeatherArmorSeparator.separateArmor((LeatherArmorMeta) items.getItemMeta());
-			} else if(mat == Material.SKULL_ITEM) {
-				skullMeta = SkullSeparator.separateSkull((SkullMeta) items.getItemMeta());
-			} else if(mat == Material.FIREWORK) {
-				fwMeta = FireworkSeparator.separateFireworkMeta((FireworkMeta) items.getItemMeta());
-			}
+
+			if(MinecraftUtils.getMinecraftVersion().startsWith("1.8")) {
+                if (mat == Material.BANNER) {
+                    bannerMeta = BannerSeparator.separateBanner((BannerMeta) items.getItemMeta());
+                    bannerMeta = BannerSeparator.separateBanner((BannerMeta) items.getItemMeta());
+                } else if (mat == Material.BOOK_AND_QUILL || mat == Material.WRITTEN_BOOK) {
+                    bookMeta = BookSeparator.separateBookMeta((BookMeta) items.getItemMeta());
+                } else if (mat == Material.ENCHANTED_BOOK) {
+                    bookMeta = BookSeparator.separateEnchantedBookMeta((EnchantmentStorageMeta) items.getItemMeta());
+                } else if (Utils.isLeatherArmor(mat)) {
+                    armorMeta = LeatherArmorSeparator.separateArmor((LeatherArmorMeta) items.getItemMeta());
+                } else if (mat == Material.SKULL_ITEM) {
+                    skullMeta = SkullSeparator.separateSkull((SkullMeta) items.getItemMeta());
+                } else if (mat == Material.FIREWORK) {
+                    fwMeta = FireworkSeparator.separateFireworkMeta((FireworkMeta) items.getItemMeta());
+                }
+
 			if(hasMeta) {
 				ItemMeta meta = items.getItemMeta();
 				if(meta.hasDisplayName())
@@ -103,6 +108,47 @@ public class SingleItemSeparator {
                 }
 
 			}
+
+            } else {
+                if (MinecraftUtils.getMinecraftVersion().startsWith("1.7"))
+                    if (mat == Material.BOOK_AND_QUILL || mat == Material.WRITTEN_BOOK) {
+                        bookMeta = BookSeparator.separateBookMeta((BookMeta) items.getItemMeta());
+                    } else if (mat == Material.ENCHANTED_BOOK) {
+                        bookMeta = BookSeparator.separateEnchantedBookMeta((EnchantmentStorageMeta) items.getItemMeta());
+                    } else if (Utils.isLeatherArmor(mat)) {
+                        armorMeta = LeatherArmorSeparator.separateArmor((LeatherArmorMeta) items.getItemMeta());
+                    } else if (mat == Material.SKULL_ITEM) {
+                        skullMeta = SkullSeparator.separateSkull((SkullMeta) items.getItemMeta());
+                    } else if (mat == Material.FIREWORK) {
+                        fwMeta = FireworkSeparator.separateFireworkMeta((FireworkMeta) items.getItemMeta());
+                    }
+            }
+
+            if(hasMeta) {
+                ItemMeta meta = items.getItemMeta();
+                if(meta.hasDisplayName())
+                    name = meta.getDisplayName();
+                if(meta.hasLore()) {
+                    lore = meta.getLore().toArray(new String[]{});
+                }
+                if(meta.hasEnchants())
+                    enchants = EnchantmentSeparator.separateEnchantments(meta.getEnchants());
+                if(meta instanceof Repairable){
+                    Repairable rep = (Repairable) meta;
+                    if(rep.hasRepairCost()){
+                        repairPenalty = rep.getRepairCost();
+                    }
+                }
+
+                if (meta.getItemFlags() != null && !meta.getItemFlags().isEmpty()) {
+                    List<String> flagsList = new ArrayList<>();
+                    for (ItemFlag flag : meta.getItemFlags()) {
+                        flagsList.add(flag.toString());
+                    }
+                    flags = flagsList.toArray(new String[flagsList.size()]);
+                }
+
+            }
 
 			values.put("id", id);
 			values.put("amount", amount);
@@ -155,18 +201,18 @@ public class SingleItemSeparator {
 
 public static ItemStack getItem(JSONObject item, int index) {
 		try {
-			int id = item.getInt("id");
-			int amount = item.getInt("amount");
-			int data = item.getInt("data");
-			String name = null;
-			Map<Enchantment, Integer> enchants = null;
+            int id = item.getInt("id");
+            int amount = item.getInt("amount");
+            int data = item.getInt("data");
+            String name = null;
+            Map<Enchantment, Integer> enchants = null;
             ArrayList<String> flags = null;
-			ArrayList<String> lore = null;
-			int repairPenalty = 0;
-			if(item.has("name"))
-				name = item.getString("name");
-			if(item.has("enchantments"))
-				enchants = EnchantmentSeparator.getEnchantments(item.getString("enchantments"));
+            ArrayList<String> lore = null;
+            int repairPenalty = 0;
+            if (item.has("name"))
+                name = item.getString("name");
+            if (item.has("enchantments"))
+                enchants = EnchantmentSeparator.getEnchantments(item.getString("enchantments"));
             if (item.has("flags")) {
                 JSONArray f = item.getJSONArray("flags");
                 flags = new ArrayList<>();
@@ -174,40 +220,60 @@ public static ItemStack getItem(JSONObject item, int index) {
                     flags.add(f.getString(i));
                 }
             }
-			if(item.has("lore")) {
-				JSONArray l = item.getJSONArray("lore");
-				lore = new ArrayList<String>();
-				for(int j = 0; j < l.length(); j++) {
-					lore.add(l.getString(j));
-				}
-			}
-			if(item.has("repairPenalty"))
-				repairPenalty = item.getInt("repairPenalty");				
+            if (item.has("lore")) {
+                JSONArray l = item.getJSONArray("lore");
+                lore = new ArrayList<String>();
+                for (int j = 0; j < l.length(); j++) {
+                    lore.add(l.getString(j));
+                }
+            }
+            if (item.has("repairPenalty"))
+                repairPenalty = item.getInt("repairPenalty");
 
 
-			if(Material.getMaterial(id) == null)
-				throw new IllegalArgumentException("Item " + index + " - No Material found with id of " + id);
-			Material mat = Material.getMaterial(id);
-			ItemStack stuff = new ItemStack(mat, amount, (short) data);
-			if (mat == Material.BANNER) {
-				BannerMeta meta = BannerSeparator.getBannerMeta(item.getJSONObject("banner-meta"));
-				stuff.setItemMeta(meta);
-			} else if((mat == Material.BOOK_AND_QUILL || mat == Material.WRITTEN_BOOK) && item.has("book-meta")) {
-				BookMeta meta = BookSeparator.getBookMeta(item.getJSONObject("book-meta"));
-				stuff.setItemMeta(meta);
-			} else if(mat == Material.ENCHANTED_BOOK && item.has("book-meta")) {
-				EnchantmentStorageMeta meta = BookSeparator.getEnchantedBookMeta(item.getJSONObject("book-meta"));
-				stuff.setItemMeta(meta);
-			} else if(Utils.isLeatherArmor(mat) && item.has("armor-meta")) {
-				LeatherArmorMeta meta = LeatherArmorSeparator.getLeatherArmorMeta(item.getJSONObject("armor-meta"));
-				stuff.setItemMeta(meta);
-			} else if(mat == Material.SKULL_ITEM && item.has("skull-meta")) {
-				SkullMeta meta = SkullSeparator.getSkullMeta(item.getJSONObject("skull-meta"));
-				stuff.setItemMeta(meta);
-			} else if(mat == Material.FIREWORK && item.has("firework-meta")) {
-				FireworkMeta meta = FireworkSeparator.getFireworkMeta(item.getJSONObject("firework-meta"));
-				stuff.setItemMeta(meta);
-			}
+            if (Material.getMaterial(id) == null)
+                throw new IllegalArgumentException("Item " + index + " - No Material found with id of " + id);
+            Material mat = Material.getMaterial(id);
+            ItemStack stuff = new ItemStack(mat, amount, (short) data);
+            if (MinecraftUtils.getMinecraftVersion().startsWith("1.8"))
+                if (mat == Material.BANNER) {
+                    BannerMeta meta = BannerSeparator.getBannerMeta(item.getJSONObject("banner-meta"));
+                    stuff.setItemMeta(meta);
+                } else if ((mat == Material.BOOK_AND_QUILL || mat == Material.WRITTEN_BOOK) && item.has("book-meta")) {
+                    BookMeta meta = BookSeparator.getBookMeta(item.getJSONObject("book-meta"));
+                    stuff.setItemMeta(meta);
+                } else if (mat == Material.ENCHANTED_BOOK && item.has("book-meta")) {
+                    EnchantmentStorageMeta meta = BookSeparator.getEnchantedBookMeta(item.getJSONObject("book-meta"));
+                    stuff.setItemMeta(meta);
+                } else if (Utils.isLeatherArmor(mat) && item.has("armor-meta")) {
+                    LeatherArmorMeta meta = LeatherArmorSeparator.getLeatherArmorMeta(item.getJSONObject("armor-meta"));
+                    stuff.setItemMeta(meta);
+                } else if (mat == Material.SKULL_ITEM && item.has("skull-meta")) {
+                    SkullMeta meta = SkullSeparator.getSkullMeta(item.getJSONObject("skull-meta"));
+                    stuff.setItemMeta(meta);
+                } else if (mat == Material.FIREWORK && item.has("firework-meta")) {
+                    FireworkMeta meta = FireworkSeparator.getFireworkMeta(item.getJSONObject("firework-meta"));
+                    stuff.setItemMeta(meta);
+                }
+            //} else {
+            if(MinecraftUtils.getMinecraftVersion().startsWith("1.7"))
+                if((mat == Material.BOOK_AND_QUILL || mat == Material.WRITTEN_BOOK) && item.has("book-meta")) {
+                    BookMeta meta = BookSeparator.getBookMeta(item.getJSONObject("book-meta"));
+                    stuff.setItemMeta(meta);
+                } else if(mat == Material.ENCHANTED_BOOK && item.has("book-meta")) {
+                    EnchantmentStorageMeta meta = BookSeparator.getEnchantedBookMeta(item.getJSONObject("book-meta"));
+                    stuff.setItemMeta(meta);
+                } else if(Utils.isLeatherArmor(mat) && item.has("armor-meta")) {
+                    LeatherArmorMeta meta = LeatherArmorSeparator.getLeatherArmorMeta(item.getJSONObject("armor-meta"));
+                    stuff.setItemMeta(meta);
+                } else if(mat == Material.SKULL_ITEM && item.has("skull-meta")) {
+                    SkullMeta meta = SkullSeparator.getSkullMeta(item.getJSONObject("skull-meta"));
+                    stuff.setItemMeta(meta);
+                    } else if(mat == Material.FIREWORK && item.has("firework-meta")) {
+                    FireworkMeta meta = FireworkSeparator.getFireworkMeta(item.getJSONObject("firework-meta"));
+                    stuff.setItemMeta(meta);
+                }
+
 			ItemMeta meta = stuff.getItemMeta();
 			if(name != null)
 				meta.setDisplayName(name);
