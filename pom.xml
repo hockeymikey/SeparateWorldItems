@@ -45,16 +45,12 @@
 
     <repositories>
         <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+            <id>onarandombox</id>
+            <url>http://repo.onarandombox.com/content/groups/public</url>
         </repository>
         <repository>
             <id>bukkit-repo</id>
-            <url>http://repo.bukkit.org/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>onarandombox</id>
-            <url>http://repo.onarandombox.com/content/groups/public/</url>
+            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
         <repository>
             <id>multiinv</id>
@@ -64,13 +60,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
+            <groupId>org.bukkit</groupId>
+            <artifactId>bukkit</artifactId>
             <version>${bukkitVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
+            <artifactId>craftbukkit</artifactId>
             <version>${bukkitVersion}</version>
         </dependency>
         <dependency>
@@ -85,6 +81,11 @@
             <artifactId>MultiInv</artifactId>
             <version>3.3.5</version>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>${bukkitVersion}</version>
         </dependency>
     </dependencies>
 
