@@ -142,7 +142,7 @@ public class ConfigFiles {
         if (config.equalsIgnoreCase("config")) {
             configuration.options().header("Do not edit reset-config unless you want to reset your config!!");
             addDefault(configuration, "reset-config", true);
-            addDefault(configuration, "check-updates", Boolean.valueOf(true));
+            addDefault(configuration, "check-updates", true);
             addDefault(configuration, "manage-gamemodes", false);
             addDefault(configuration, "separate-gamemode-inventories", false);
             addDefault(configuration, "player.ender-chest", true);

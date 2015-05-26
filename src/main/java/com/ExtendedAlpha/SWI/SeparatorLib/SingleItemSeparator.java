@@ -128,30 +128,21 @@ public class SingleItemSeparator {
             }
 
             if(hasMeta) {
-                ItemMeta meta = items.getItemMeta();
-                if(meta.hasDisplayName())
-                    name = meta.getDisplayName();
-                if(meta.hasLore()) {
-                    lore = meta.getLore().toArray(new String[]{});
-                }
-                if(meta.hasEnchants())
-                    enchants = EnchantmentSeparator.separateEnchantments(meta.getEnchants());
-                if(meta instanceof Repairable){
-                    Repairable rep = (Repairable) meta;
-                    if(rep.hasRepairCost()){
-                        repairPenalty = rep.getRepairCost();
-                    }
-                }
-
-                if (meta.getItemFlags() != null && !meta.getItemFlags().isEmpty()) {
-                    List<String> flagsList = new ArrayList<>();
-                    for (ItemFlag flag : meta.getItemFlags()) {
-                        flagsList.add(flag.toString());
-                    }
-                    flags = flagsList.toArray(new String[flagsList.size()]);
-                }
-
-            }
+				ItemMeta meta = items.getItemMeta();
+				if (meta.hasDisplayName())
+					name = meta.getDisplayName();
+				if (meta.hasLore()) {
+					lore = meta.getLore().toArray(new String[]{});
+				}
+				if (meta.hasEnchants())
+					enchants = EnchantmentSeparator.separateEnchantments(meta.getEnchants());
+				if (meta instanceof Repairable) {
+					Repairable rep = (Repairable) meta;
+					if (rep.hasRepairCost()) {
+						repairPenalty = rep.getRepairCost();
+					}
+				}
+			}
 
 			values.put("id", id);
 			values.put("amount", amount);
