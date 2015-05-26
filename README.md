@@ -7,11 +7,9 @@ It's a good replacement for the outdated <a href="http://dev.bukkit.org/bukkit-p
 
 ## Installation and Usage
 
-Detailed documentation can be found in Spigotmc: http://www.spigotmc.org/resources/separate-world-items-a-mv-i-replacement.2568/
+Detailed documentation and Releases can be found at our SpigotMc page: <a href="http://www.spigotmc.org/resources/separate-world-items-a-mv-i-replacement.2568/" target="_blank">SWI Page on SpigotMc</a>
 
-Releases can be found on Spigotmc: http://www.spigotmc.org/resources/separate-world-items-a-mv-i-replacement.2568/
-
-Dev-Builds can be found here: http://ci.md-5.net/job/SeparateWorldItems/
+Dev-Builds (Jenkins) can be found here: http://ci.md-5.net/job/SeparateWorldItems/
 
 ## Running Prerequisites
 * Java 7
