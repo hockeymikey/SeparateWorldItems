@@ -37,6 +37,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.ExtendedAlpha.SWI.Utils.MinecraftUtils;
+
 public class SingleItemSeparator {
 	
 	protected SingleItemSeparator() {
